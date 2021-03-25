@@ -4,6 +4,15 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-WebApp1-370C389E-2CEE-488E-9EC0-84414E591306</UserSecretsId>
   </PropertyGroup>
+  <PropertyGroup>
+  <ResolveStaticWebAssetsInputsDependsOn>RemoveIdentityAssets</ResolveStaticWebAssetsInputsDependsOn>
+</PropertyGroup>
+
+<Target Name="RemoveIdentityAssets">
+  <ItemGroup>
+    <StaticWebAsset Remove="@(StaticWebAsset)" Condition="%(SourceId) == 'Microsoft.AspNetCore.Identity.UI'" />
+  </ItemGroup>
+</Target>
 
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
